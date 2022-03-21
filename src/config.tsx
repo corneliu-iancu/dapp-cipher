@@ -1,4 +1,9 @@
 export const contractAddress =
-  'erd1qqqqqqqqqqqqqpgq4u0wg9kd9r25uvp3vaak5nu6lht884lrd8ssvz5dv6';
+  'erd1qqqqqqqqqqqqqpgq7v6rrxlgwrdgw3gkk9j69mkw6kvdrxg93xaqfentpc';
 
-export const dAppName = 'example Dapp';
+export const dAppName = 'GELD Dapp';
+
+// SC Data:
+export const COIN_NAME = 'GELD';
+export const COIN_IDENTIFIER = 'CGLD-447ee4';
+export const ESDT_DECIMALS = 10 ** 18;
