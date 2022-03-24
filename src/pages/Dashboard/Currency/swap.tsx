@@ -6,7 +6,7 @@ import { getUSDperEGLDValue } from './../helpers/asyncRequests';
 
 const ENTRY_TICKET_PRICE = 0.0015;
 
-const GELD_COEF = 1000 * 10 ** 3;
+const GELD_COEF = 500 * 10 ** 3;
 
 const Swap = () => {
   const [amount, setAmount] = React.useState(ENTRY_TICKET_PRICE);
