@@ -1,8 +1,14 @@
 import * as React from 'react';
 import { COIN_NAME, NFT_NAME } from 'config';
-const MintForm = () => {
+
+interface MintFormInterface {
+  handleMintAction: CallableFunction;
+}
+
+const MintForm = ({ handleMintAction }: MintFormInterface) => {
   const handleSubmit = (evt: React.FormEvent) => {
-    console.log('handle submit.');
+    // console.log('handle submit.');
+    handleMintAction();
     evt.preventDefault();
     return false;
   };
@@ -24,13 +30,13 @@ const MintForm = () => {
         <p className='mb-0 mr-2'>100 {COIN_NAME}</p>
       </div>
 
-      <div className='d-flex justify-content-between border border-dark p-2 mb-4 rounded'>
+      <div className='d-flex bg-secondary text-light justify-content-between border border-dark p-2 mb-4 rounded'>
         <p className='mb-0'>LKMEX</p>
-        <p className='mb-0'>2500</p>
+        <p className='mb-0'>FREE</p>
       </div>
       <div className='d-flex justify-content-between border border-dark p-2 mb-4'>
         <p className='mb-0'>EGLD</p>
-        <p className='mb-0'>0.025</p>
+        <p className='mb-0'>FREE</p>
       </div>
       <div className='input-group'>
         <button className='btn btn-block btn-outline-primary'>MINT</button>
