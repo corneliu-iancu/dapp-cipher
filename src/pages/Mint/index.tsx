@@ -141,6 +141,7 @@ const Mint = () => {
         <div className='col-4 col-md-4 d-flex flex-column'>
           <div className='flex-fill card rounded border border-dark'>
             <div className='card-body p-1'>
+              {/* @todo: this structure can be extracted to a stateless component. */}
               <table className='table table-borderless'>
                 <thead>
                   <tr>
@@ -170,28 +171,6 @@ const Mint = () => {
                     ))}
                 </tbody>
               </table>
-              {/* <div className='container-fluid'>
-                <div className='row mb-2'>
-                  <div className='col'>transaction</div>
-                  <div className='col text-right'>amount</div>
-                  <div className='col text-right'>date</div>
-                </div>
-                <div className='row bg-dark text-light mb-2'>
-                  <div className='col'>#32123</div>
-                  <div className='col text-right'>0.025 EGLD</div>
-                  <div className='col text-right'>2min ago</div>
-                </div>
-                {/* <div>transaction</div> */}
-              {/* <span>paid</span> */}
-              {/* <span>date</span> */}
-              {/* </div> */}
-              {/* {ownerNfts.map((nft: any) => (
-                <NftDisplay
-                  key={nft.identifier}
-                  identifier={nft.identifier}
-                  nonce={nft.nonce}
-                />
-              ))} */}
             </div>
           </div>
         </div>

@@ -27,6 +27,22 @@ const Navbar = () => {
         </Link>
 
         <Nav className='ml-auto'>
+          <NavItem className='mr-4'>
+            <Link
+              className='d-flex align-items-center navbar-brand mr-0'
+              to={isLoggedIn ? routeNames.dashboard : routeNames.home}
+            >
+              <span className='text-muted'>{'Dashboard'}</span>
+            </Link>
+          </NavItem>
+          <NavItem className='mr-4'>
+            <Link
+              className='d-flex align-items-center navbar-brand mr-0'
+              to={isLoggedIn ? routeNames.mint : routeNames.home}
+            >
+              <span className='text-muted'>{'Mint'}</span>
+            </Link>
+          </NavItem>
           {isLoggedIn && (
             <NavItem>
               <button
