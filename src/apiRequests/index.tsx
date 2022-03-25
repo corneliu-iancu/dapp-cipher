@@ -15,6 +15,11 @@ interface GetAddressNFTsInterface {
   tokenIdentifier: string;
 }
 
+interface GetAccountBalanceInterface {
+  apiAddress: string;
+  address: string;
+}
+
 const fetchTransactions = (url: string) =>
   async function getTransactions({
     apiAddress,
@@ -49,12 +54,13 @@ const fetchAddressNFTs = (url: string) =>
     apiAddress,
     address
   }: GetAddressNFTsInterface) {
-    url = url
+    // console.log('Replacing with address:', address, url);
+    const urlDest = url
       // .replace('<tokenIdentifier>', tokenIdentifier)
       .replace('<bech32Address>', address);
 
     try {
-      const { data } = await axios.get(`${apiAddress}${url}`, {
+      const { data } = await axios.get(`${apiAddress}${urlDest}`, {
         timeout: 0
       });
 
@@ -67,12 +73,37 @@ const fetchAddressNFTs = (url: string) =>
         success: false
       };
     }
-    // console.log('>> Reading tokens from:', url);
+  };
+
+const fetchAccountBalance = (url: string) =>
+  async function getAccountBalance({
+    apiAddress,
+    address
+  }: GetAccountBalanceInterface) {
+    try {
+      const { data } = await axios.get(
+        `${apiAddress}${url.replace('<bech32Address>', address)}`,
+        {
+          timeout: 0
+        }
+      );
+
+      return {
+        data: data,
+        success: data !== undefined
+      };
+    } catch (err) {
+      return {
+        success: false
+      };
+    }
   };
 
 export const getTransactions = fetchTransactions('/transactions');
 export const getTransactionsCount = fetchTransactions('/transactions/count');
 export const getAddressNFTs = fetchAddressNFTs(
   '/accounts/<bech32Address>/nfts'
-  // '/address/<bech32Address>/nft/<tokenIdentifier>/nonce/<creation-nonce>'
+);
+export const getAccountBalance = fetchAccountBalance(
+  '/accounts/<bech32Address>'
 );
