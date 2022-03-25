@@ -26,45 +26,11 @@ const Mint = () => {
   // const { address } = account;
   const { network } = useGetNetworkConfig();
   const { sendTransactions } = transactionServices;
-  const { pendingTransactions, hasPendingTransactions } =
-    useGetPendingTransactions();
+  const { hasPendingTransactions } = useGetPendingTransactions();
   const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
       string | null
     >(null);
 
-  const onHandleMintAction = async () => {
-    const name = 'ROLZ#' + Math.random().toString(16).substr(2, 10);
-    const uri = 'https://i.ytimg.com/vi/Ci___2-Ielw/maxresdefault.jpg';
-    const royalties = 100; // meaning 1%? maybe TBD.
-    const selling_price = 10 ** 16;
-    const mintTransaction = {
-      value: 10 ** 18,
-      data: `createNft@${new Buffer(name).toString('hex')}@${royalties.toString(
-        16
-      )}@${new Buffer(uri).toString('hex')}@${selling_price.toString(16)}`,
-      receiver: contractAddress,
-      gasLimit: 300000000
-    };
-
-    await refreshAccount();
-
-    const { sessionId /*, error*/ } = await sendTransactions({
-      transactions: mintTransaction,
-      transactionsDisplayInfo: {
-        processingMessage: 'Processing mint NFT transaction',
-        errorMessage: 'An error has occured during mint NFT action.',
-        successMessage: 'Mint NFT transaction successful'
-      },
-      redirectAfterSign: false
-    });
-
-    if (sessionId != null) {
-      setTransactionSessionId(sessionId);
-      console.log('>> Session ID:', sessionId);
-    }
-  };
-  console.log('hasPendingTransactions', hasPendingTransactions);
-  console.log('pendingTransactions', pendingTransactions);
   React.useEffect(() => {
     const query = new Query({
       address: new Address(contractAddress),
@@ -98,7 +64,39 @@ const Mint = () => {
         }
       }); // handle erros
     }
-  }, [tokenIdentifier]);
+  }, [tokenIdentifier, hasPendingTransactions]);
+
+  const onHandleMintAction = async () => {
+    const name = 'ROLZ#' + Math.random().toString(16).substr(2, 10);
+    const uri = 'https://i.ytimg.com/vi/Ci___2-Ielw/maxresdefault.jpg';
+    const royalties = 100; // meaning 1%? maybe TBD.
+    const selling_price = 10 ** 16;
+    const mintTransaction = {
+      value: 10 ** 18,
+      data: `createNft@${new Buffer(name).toString('hex')}@${royalties.toString(
+        16
+      )}@${new Buffer(uri).toString('hex')}@${selling_price.toString(16)}`,
+      receiver: contractAddress,
+      gasLimit: 300000000
+    };
+
+    await refreshAccount();
+
+    const { sessionId /*, error*/ } = await sendTransactions({
+      transactions: mintTransaction,
+      transactionsDisplayInfo: {
+        processingMessage: 'Processing mint NFT transaction',
+        errorMessage: 'An error has occured during mint NFT action.',
+        successMessage: 'Mint NFT transaction successful'
+      },
+      redirectAfterSign: false
+    });
+
+    if (sessionId != null) {
+      setTransactionSessionId(sessionId);
+      console.log('>> Session ID:', sessionId);
+    }
+  };
 
   return (
     <div className='container-fluid py-4'>
