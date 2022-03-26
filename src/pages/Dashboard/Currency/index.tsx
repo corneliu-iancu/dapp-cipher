@@ -11,18 +11,14 @@ import { contractAddress } from 'config';
 
 import Swap from './swap';
 
-const TotalSupply = () => {
-  // const account = useGetAccountInfo();
-  // const { hasPendingTransactions } = useGetPendingTransactions();
+const TotalEgldTreassury = () => {
   const { network } = useGetNetworkConfig();
-  // const { address } = account;
   const [lockedBalance, setLockedBalance] = React.useState(0);
 
   React.useEffect(() => {
     const query = new Query({
       address: new Address(contractAddress),
       func: new ContractFunction('getLockedEgldBalance')
-      // args: [new AddressValue(new Address(address))]
     });
     const proxy = new ProxyProvider(network.apiAddress);
     proxy
@@ -30,7 +26,6 @@ const TotalSupply = () => {
       .then(({ returnData }) => {
         const [encoded] = returnData;
         const decoded = Buffer.from(encoded, 'base64').toString('hex');
-        // console.log(parseInt(decoded, 16));
         setLockedBalance(parseInt(decoded, 16) / 10 ** 18);
       })
       .catch((err) => {
@@ -40,4 +35,4 @@ const TotalSupply = () => {
   return <>{lockedBalance.toFixed(4)}</>;
 };
 
-export { TotalSupply, Swap };
+export { TotalEgldTreassury, Swap };
