@@ -16,6 +16,7 @@ import {
 import { contractAddress } from 'config';
 import { getAddressNFTs } from '../../apiRequests';
 import getMintTransactions from '../../apiRequests/getMintTransactions';
+import { ReactComponent as EGLD } from '../../assets/img/$egld.svg';
 // import NftDisplay from '../../components/NFT';
 import ContractBalance from './Balance/contract';
 import MintForm from './Form/MintForm';
@@ -123,17 +124,19 @@ const Mint = () => {
     });
   }, [tokenIdentifier, hasPendingTransactions]);
   return (
-    <div className='container-fluid py-4'>
+    <div className='container py-4'>
       <div className='row'>
-        <div className='col-12 col-md-12 d-flex justify-content-between'>
-          <h4 className='py-4'>{'REWARDS VAULT'}</h4>
+        <div className='col-8 col-md-8 d-flex justify-content-between'>
+          <h4 className='py-4'>{'MINT ( whitelist )'}</h4>
+        </div>
+        <div className='col-4 col-md-4'>
           <ContractBalance address={contractAddress} />
         </div>
       </div>
       <div className='row mt-4'>
-        <div className='col-8 col-md-8 d-flex'>
+        <div className='col-8 col-md-8'>
           <div className='flex-fill rounded border border-dark'>
-            <div className='card-body p-1'>
+            <div className='card-body d-flex flex-fill'>
               <MintForm handleMintAction={onHandleMintAction} />
             </div>
           </div>
@@ -161,10 +164,15 @@ const Mint = () => {
                     .map((tr: any) => (
                       <tr key={tr.txHash}>
                         <td>#32123</td>
-                        <td>{(tr.value * 10 ** -18).toFixed(3)} EGLD</td>
+                        <td>
+                          <span className='d-flex align-items-center'>
+                            <EGLD className='digital-currency small' />
+                            <>{(tr.value * 10 ** -18).toFixed(4)}</>
+                          </span>
+                        </td>
                         <td className='text-right'>
                           <small>
-                            {new Date(tr.timestamp * 1000).toUTCString()}
+                            {new Date(tr.timestamp * 1000).toLocaleString()}
                           </small>
                         </td>
                       </tr>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import { getAccountBalance } from '../../../apiRequests';
+import { ReactComponent as EGLD } from '../../../assets/img/$egld.svg';
 
 interface ContractBalanceInterface {
   address: string;
@@ -22,15 +23,18 @@ const ContractBalance = ({ address }: ContractBalanceInterface) => {
   return (
     <div className='py-4'>
       {accountBalance && (
-        <h4 className='border px-4 py-2 border-dark rounded d-flex'>
+        <div className='border px-4 py-2 border-dark rounded d-flex align-items-center justify-content-between'>
           Balance:
-          <span>
-            {accountBalance['balance']
-              ? accountBalance['balance'] * 10 ** -18
-              : '0'}
-            EGLD
+          <span className='d-flex align-items-center'>
+            <EGLD className='digital-currency small' />
+            <>
+              {(accountBalance['balance']
+                ? accountBalance['balance'] * 10 ** -18
+                : 0
+              ).toFixed(4)}
+            </>
           </span>
-        </h4>
+        </div>
       )}
     </div>
   );
