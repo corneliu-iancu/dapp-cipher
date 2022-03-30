@@ -20,8 +20,8 @@ const fetchMintTransactions = (url: string) =>
         `${apiAddress}${url.replace('{address}', contractAddress)}`,
         {
           params: {
-            withLogs: false,
-            token: tokenIdentifier
+            withLogs: false
+            // token: tokenIdentifier
             //   sender: address,
             //   receiver: contractAddress,
             //   condition: 'must',

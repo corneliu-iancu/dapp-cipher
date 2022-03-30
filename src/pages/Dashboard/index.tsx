@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [accountBalance, setAccountBalance] = React.useState(-1);
   React.useEffect(() => {
     getESDTBalance({
-      apiAddress: 'https://devnet-gateway.elrond.com',
+      apiAddress: 'https://testnet-gateway.elrond.com', // extract from network object.
       address: account.address,
       tokenId: 'CGLD-447ee4', // TODO Read from SC.
       timeout: 3000,

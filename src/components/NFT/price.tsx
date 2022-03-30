@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ReactComponent as $EGLD } from '../../assets/img/$egld.svg';
 import { ReactComponent as $GELD } from '../../assets/img/$geld.svg';
 import style from './price.module.scss';
 
@@ -11,7 +12,12 @@ const Price = ({ amount, currency }: PriceInterface) => {
   return (
     <div className={`border-dark ${style.price}`}>
       {/* <span className='fs-5'>{currency}</span> */}
-      <$GELD className='digital-currency small' />
+      {currency && currency == 'GELD' && (
+        <$GELD className='digital-currency small' />
+      )}
+      {currency && currency == 'EGLD' && (
+        <$EGLD className='digital-currency small' />
+      )}
       <span>{amount.toFixed(2)}</span>
     </div>
   );

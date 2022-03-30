@@ -66,10 +66,28 @@ const Mint = () => {
       }).then(({ data, success }) => {
         if (success) {
           setOwnerNfts(data);
-          console.log('>> Set user nfts.', ownerNfts);
+          console.log('>> Set user nfts.', data, ownerNfts);
         }
       }); // handle erros
     }
+  }, [tokenIdentifier, hasPendingTransactions]);
+
+  // @docs: Read all mint transaction on the current contract.
+  React.useEffect(() => {
+    if (!tokenIdentifier) return;
+
+    getMintTransactions({
+      apiAddress: network.apiAddress,
+      contractAddress,
+      tokenIdentifier,
+      timeout: 3000 // SET DEFAULT TIMEOUT IN SETTINGS.
+    }).then(({ data, success }: any) => {
+      // console.log(data, success);
+      if (success) {
+        // @todo: format date utility for displaying timestamp.
+        setTransactions(data);
+      }
+    });
   }, [tokenIdentifier, hasPendingTransactions]);
 
   // @docs: handle blockchain mint action
@@ -80,7 +98,7 @@ const Mint = () => {
     const royalties = 100; // meaning 1%? maybe TBD.
     const selling_price = 10 ** 16;
     const mintTransaction = {
-      value: 10 ** 18,
+      value: 10 ** 16,
       data: `createNft@${new Buffer(name).toString('hex')}@${royalties.toString(
         16
       )}@${new Buffer(uri).toString('hex')}@${selling_price.toString(16)}`,
@@ -106,28 +124,14 @@ const Mint = () => {
     }
   };
 
-  // @docs: Read all mint transaction on the current contract.
-  React.useEffect(() => {
-    if (!tokenIdentifier) return;
-
-    getMintTransactions({
-      apiAddress: network.apiAddress,
-      contractAddress,
-      tokenIdentifier,
-      timeout: 3000 // SET DEFAULT TIMEOUT IN SETTINGS.
-    }).then(({ data, success }: any) => {
-      console.log(data, success);
-      if (success) {
-        // @todo: format date utility for displaying timestamp.
-        setTransactions(data);
-      }
-    });
-  }, [tokenIdentifier, hasPendingTransactions]);
   return (
     <div className='container py-4'>
       <div className='row'>
         <div className='col-8 col-md-8 d-flex justify-content-between'>
-          <h4 className='py-4'>{'MINT ( whitelist )'}</h4>
+          <h4 className='py-4'>
+            {'MINT ( whitelist ) '}
+            {/* {account.address} */}
+          </h4>
         </div>
         <div className='col-4 col-md-4'>
           <ContractBalance address={contractAddress} />
@@ -159,6 +163,9 @@ const Mint = () => {
                   {transactions
                     .sort((a: any, b: any): any => {
                       return a.timestamp < b.timestamp;
+                    })
+                    .filter((a: any) => {
+                      return a.action.name == 'createNft';
                     })
                     .slice(0, 5)
                     .map((tr: any) => (

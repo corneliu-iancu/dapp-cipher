@@ -1,5 +1,19 @@
 import * as React from 'react';
-import { COIN_NAME, NFT_NAME } from 'config';
+import {
+  // transactionServices,
+  // useGetAccountInfo,
+  // useGetPendingTransactions,
+  // refreshAccount,
+  useGetNetworkConfig
+} from '@elrondnetwork/dapp-core';
+import {
+  Address,
+  ContractFunction,
+  ProxyProvider,
+  Query
+} from '@elrondnetwork/erdjs';
+
+import { COIN_NAME, NFT_NAME, contractAddress } from 'config';
 import { ReactComponent as $NFT } from '../../../assets/img/$nft.svg';
 import Price from '../../../components/NFT/price';
 import style from './form.module.scss';
@@ -9,7 +23,41 @@ interface MintFormInterface {
 }
 
 const MintForm = ({ handleMintAction }: MintFormInterface) => {
-  const [reward_amount] = React.useState<number>(0);
+  const [egldMintPrice, setEgldMintPrice] = React.useState(0);
+  const [egldEsdtRatio, setEgldEsdtRatio] = React.useState(0);
+
+  const { network } = useGetNetworkConfig();
+
+  React.useEffect(() => {
+    const getMintingPriceQuery = new Query({
+      address: new Address(contractAddress),
+      func: new ContractFunction('getMintingPrice')
+    });
+
+    const proxy = new ProxyProvider(network.apiAddress);
+
+    proxy.queryContract(getMintingPriceQuery).then(({ returnData }) => {
+      const [encoded] = returnData;
+      const decoded = Buffer.from(encoded, 'base64').toString('hex');
+      const decodedInt = parseInt(decoded, 16) / 10 ** 18;
+      setEgldMintPrice(decodedInt);
+      // console.log('>> minting price:', decodedInt);
+    });
+
+    const getMintingRatioQuery = new Query({
+      address: new Address(contractAddress),
+      func: new ContractFunction('getMintingRatio')
+    });
+
+    proxy.queryContract(getMintingRatioQuery).then(({ returnData }) => {
+      const [encoded] = returnData;
+      const decoded = Buffer.from(encoded, 'base64').toString('hex');
+      const decodedInt = parseInt(decoded, 16);
+      setEgldEsdtRatio(decodedInt);
+      // console.log('>> minting ratio:', decodedInt);
+    });
+  }, []);
+
   const handleSubmit = (evt: React.FormEvent) => {
     handleMintAction();
     evt.preventDefault();
@@ -30,20 +78,30 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
         </div>
         <div className='col-6 text-right d-flex justify-content-end'>
           <div className='d-flex align-items-center justify-content-around'>
-            <Price currency={COIN_NAME} amount={reward_amount} />
+            <Price
+              currency={COIN_NAME}
+              amount={egldMintPrice * egldEsdtRatio}
+            />
           </div>
         </div>
       </div>
       <div className='row mb-4'>
         {/* <p className='mb-0'>LKMEX</p>
         <p className='mb-0'>FREE</p> */}
-        <Price currency={'EGLD'} amount={reward_amount} />
+        <div className='col-6'>
+          <p className='mb-0'>Mint price:</p>
+        </div>
+        <div className='col-6 text-right d-flex justify-content-end'>
+          <div className='d-flex align-items-center justify-content-around'>
+            <Price currency={'EGLD'} amount={egldMintPrice} />
+          </div>
+        </div>
       </div>
-      <div className='row mb-4'>
-        {/* <p className='mb-0'>EGLD</p>
-        <p className='mb-0'>FREE</p> */}
-        <Price currency={'LKMEX'} amount={reward_amount} />
-      </div>
+      {/* <div className='row mb-4'> */}
+      {/* <p className='mb-0'>EGLD</p>
+      <p className='mb-0'>FREE</p> */}
+      {/* <Price currency={'LKMEX'} amount={reward_amount} /> */}
+      {/* </div> */}
       <div className='row'>
         <button className='btn btn-block btn-outline-dark'>MINT</button>
       </div>

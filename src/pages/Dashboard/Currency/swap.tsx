@@ -45,9 +45,9 @@ const Swap = () => {
   } = useGetNetworkConfig();
 
   getUSDperEGLDValue({
-    apiAddress: apiAddress,
-    baseId: 'WEGLD-88600a', // @todo: move to constants/env vars. !!!IMPORTANT
-    quoteId: 'USDC-a32906',
+    apiAddress: apiAddress, //@todo: move to constants/env vars. !!!IMPORTANT
+    baseId: 'WEGLD-71e90a', // devnet token: 'WEGLD-88600a'
+    quoteId: 'USDC-a63f36', // devnet token: 'USDC-a32906'
     timeout: 3000
   }).then(({ data: { basePrice }, success: transactionsFetched }) => {
     if (transactionsFetched) setUsdValue(basePrice * 1.5);
