@@ -1,14 +1,30 @@
 import * as React from 'react';
-import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
+import {
+  useGetAccountInfo,
+  transactionServices,
+  useGetNetworkConfig
+} from '@elrondnetwork/dapp-core';
+import {
+  Address,
+  ContractFunction,
+  ProxyProvider,
+  Query
+} from '@elrondnetwork/erdjs';
+import Countdown from 'react-countdown';
 import { ESDT_DECIMALS, contractAddress } from 'config';
-import { ReactComponent as EGLD } from '../../assets/img/$egld.svg';
-import { ReactComponent as GELD } from '../../assets/img/$geld.svg';
-import { TotalEgldTreassury, Swap } from './Currency';
+import { TotalEgldTreassury } from './Currency';
 import { getESDTBalance } from './helpers/asyncRequests';
+import { Whitelist, WhitelistStatus } from './Whitelist';
 
 const Dashboard = () => {
   const account = useGetAccountInfo();
+  const { sendTransactions } = transactionServices;
   const [accountBalance, setAccountBalance] = React.useState(-1);
+  const [whitelistStatus, setWhitelistStatus] = React.useState(false);
+  const [whitelistStartTimestamp, setWhitelistStartTimestamp] =
+    React.useState(0);
+  const { network } = useGetNetworkConfig();
+
   React.useEffect(() => {
     getESDTBalance({
       apiAddress: 'https://testnet-gateway.elrond.com', // extract from network object.
@@ -25,13 +41,60 @@ const Dashboard = () => {
     });
   }, []);
 
+  React.useEffect(() => {
+    // get whitelist period and rounds.
+    const query = new Query({
+      address: new Address(contractAddress),
+      func: new ContractFunction('getWhitelistStart')
+    });
+    const proxy = new ProxyProvider(network.apiAddress);
+    proxy
+      .queryContract(query)
+      .then(({ returnData }) => {
+        const [encoded] = returnData;
+        const decoded = Buffer.from(encoded, 'base64').toString('hex'); // decode big int.
+        const refDateTimestamp = parseInt(decoded, 16);
+        // console.log('ref start date: ', refDateTimestamp);
+        setWhitelistStartTimestamp(refDateTimestamp * 1000);
+      })
+      .catch((err) => {
+        console.error('Unable to call VM query', err);
+      });
+  }, []);
+  const sendWhitelistTx = async (evt: any) => {
+    // console.log(evt);
+    evt.preventDefault();
+    //console.log('>> sendWhitelistTx');
+    const whitelistTransaction = {
+      value: 0,
+      data: 'setWhitelist',
+      receiver: contractAddress,
+      gasLimit: 300000000
+    };
+
+    await sendTransactions({
+      transactions: whitelistTransaction,
+      transactionsDisplayInfo: {
+        processingMessage: 'Processing mint NFT transaction',
+        errorMessage: 'An error has occured during mint NFT action.',
+        successMessage: 'Mint NFT transaction successful'
+      },
+      redirectAfterSign: false
+    });
+  };
   return (
     <div className='container-fluid py-4'>
       <div className='row'>
         <div className='col-3 col-md-3 mx-auto'>
           <div className='card rounded border border-dark'>
-            <div className='card-body p-1'>
-              <h4 className='p-4'>{'71h: 59min: 59sec remaining'}</h4>
+            <div className='card-body'>
+              <h3>
+                {/* {whitelistStartTimestamp} <br />
+                {new Date().getTime()} <br /> */}
+                {whitelistStartTimestamp && (
+                  <Countdown date={whitelistStartTimestamp} />
+                )}
+              </h3>
             </div>
           </div>
         </div>
@@ -44,7 +107,6 @@ const Dashboard = () => {
                 </div>
                 <div className='col-6'>
                   <h2 className='p-2 d-flex align-items-center justify-content-end'>
-                    <EGLD className='digital-currency mr-2' />
                     <TotalEgldTreassury />
                   </h2>
                 </div>
@@ -56,20 +118,19 @@ const Dashboard = () => {
           <div className='card rounded border border-dark'>
             <div className='card-body p-1'>
               <div className='row'>
-                <div className='col-12'>
+                {/* <div className='col-12'>
                   <h4 className='p-2'>Account</h4>
-                </div>
+                </div> */}
                 {accountBalance > -1 && (
                   <div className='col-12'>
-                    <h4 className='pt-0 p-2 d-flex align-items-center justify-content-between'>
-                      <GELD className='digital-currency' />
+                    {/* <h4 className='pt-0 p-2 d-flex align-items-center justify-content-between'>
                       <div className='d-flex flex-column'>
                         <span>eGELD</span>
                         <span>{accountBalance}</span>
                       </div>
-                    </h4>
+                    </h4> */}
                     <h4 className='pt-0 p-2 d-flex align-items-center justify-content-between'>
-                      <EGLD className='digital-currency' />
+                      {/* <EGLD className='digital-currency' /> */}
                       <div className='d-flex flex-column text-right'>
                         <span>Elrond eGold</span>
                         <span>
@@ -88,67 +149,30 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='row mt-4'>
-        <div className='col-3 col-md-3 mx-auto'>
+        <div className='col-2 col-md-2 mx-auto'></div>
+        <div className='col-8 col-md-8 mx-auto'>
           <div className='card rounded border border-dark'>
-            <div className='card-body p-1'>
-              <h4 className='p-4'>{'Transactions'}</h4>
-            </div>
-          </div>
-        </div>
-        <div className='col-6 col-md-6 mx-auto'>
-          <div className=' card rounded border border-dark'>
-            <div className='card-body p-1'>
+            <div className='card-body'>
               <div className='row'>
                 <div className='col-12'>
-                  <Swap />
+                  {/* INSERT WHITELISTING STATUS HERE. */}
+                  <WhitelistStatus
+                    whiteListStatus={whitelistStatus}
+                    setWhitelistStatus={setWhitelistStatus}
+                  />
+                  {/* {JSON.stringify(whitelistStatus)} */}
+                  {/* INSERT WHITELISTING ACTION HERE. */}
+                  <Whitelist
+                    whiteListStatus={whitelistStatus}
+                    sendTx={sendWhitelistTx}
+                  />
+                  {/* <Swap /> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className='col-3 col-md-3 mx-auto'>
-          <div className='card rounded border border-dark'>
-            <div className='card-body p-1'>
-              <div className='row'>
-                <div className='col-12'>
-                  <h4 className='p-2'>Progress</h4>
-                </div>
-                <div className='col-12'>
-                  <p className='pt-2'>
-                    8 financing rounds of increasing value.
-                  </p>
-                  {/* <p className='pt-2'>
-                    1/8 Sold 150.000GELD for 15 EGLD (12 days)
-                  </p>
-                  <p className='pt-2'>
-                    2/8 Sold 250.000GELD for 25 EGLD (9 days)
-                  </p>
-                  <p className='pt-2'>
-                    3/8 Sold 250.000GELD for 125 EGLD (5 days)
-                  </p>
-                  <p className='pt-2'>
-                    4/8 Sold 550.000GELD for 500 EGLD (5 days)
-                  </p> */}
-                  {/* <p className='pt-2'>
-                    5/8 Sold 750.000GELD for 15 EGLD (12 days)
-                  </p>
-                  <p className='pt-2'>
-                    6/8 Sold 1.000.000GELD for 25 EGLD (9 days)
-                  </p>
-                  <p className='pt-2'>
-                    7/8 Sold 1.200.000GELD for 125 EGLD (5 days)
-                  </p>
-                  <p className='pt-2'>
-                    8/8 Sold 2.250.000GELD for 500 EGLD (5 days)
-                  </p> */}
-                </div>
-                {/* <div className='col-12'>
-                  <h4 className='pl-2 pb-2 pr-2'>1. Presale.</h4>
-                </div> */}
-              </div>
-            </div>
-          </div>
-        </div>
+        <div className='col-2 col-md-2 mx-auto'></div>
       </div>
     </div>
   );
