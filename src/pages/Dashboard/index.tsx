@@ -14,25 +14,26 @@ import {
 import Deadline from 'common/Deadline';
 import EsdtBalance from 'common/EsdtBalance';
 import { ESDT_DECIMALS, contractAddress } from 'config';
+import useTokenIdentifier from 'hooks/useTokenIdentifier';
 import { getESDTBalance } from './helpers/asyncRequests';
 import { Whitelist, WhitelistStatus } from './Whitelist';
-// import { TotalEgldTreassury } from './Currency';
 
 const Dashboard = () => {
   const account = useGetAccountInfo();
   const { sendTransactions } = transactionServices;
-  const [accountBalance, setAccountBalance] = React.useState(-1);
+  const [accountBalance, setAccountBalance] = React.useState<number>(0);
   const [whitelistStatus, setWhitelistStatus] = React.useState(false);
   const [whitelistStartTimestamp, setWhitelistStartTimestamp] =
     React.useState(0);
   const { network } = useGetNetworkConfig();
-  // console.log(account.account.balance);
-  // Reads ESDt Balance.
+  const [tokenIdentifier] = useTokenIdentifier();
+
   React.useEffect(() => {
+    if (!tokenIdentifier) return;
     getESDTBalance({
       apiAddress: 'https://testnet-gateway.elrond.com', // extract from network object.
       address: account.address,
-      tokenId: 'CGLD-447ee4', // TODO Read from SC.
+      tokenId: 'GELD-9f0b77', //tokenIdentifier, // TODO Read from SC.
       timeout: 3000,
       contractAddress
     }).then(({ data, success: transactionsFetched }) => {
@@ -40,10 +41,9 @@ const Dashboard = () => {
         console.error('Failed to read user balance.');
         return;
       }
-      // console.log(data.data.tokenData.balance / ESDT_DECIMALS);
-      setAccountBalance(data.data.tokenData.balance / ESDT_DECIMALS);
+      setAccountBalance(parseInt(data.data.tokenData.balance) / ESDT_DECIMALS);
     });
-  }, []);
+  }, [tokenIdentifier]);
 
   // Reads whitelist start date.
   React.useEffect(() => {
@@ -59,7 +59,6 @@ const Dashboard = () => {
         const [encoded] = returnData;
         const decoded = Buffer.from(encoded, 'base64').toString('hex'); // decode big int.
         const refDateTimestamp = parseInt(decoded, 16);
-        // console.log('ref start date: ', refDateTimestamp);
         setWhitelistStartTimestamp(refDateTimestamp * 1000);
       })
       .catch((err) => {
@@ -67,9 +66,7 @@ const Dashboard = () => {
       });
   }, []);
   const sendWhitelistTx = async (evt: any) => {
-    // console.log(evt);
     evt.preventDefault();
-    //console.log('>> sendWhitelistTx');
     const whitelistTransaction = {
       value: 0,
       data: 'setWhitelist',

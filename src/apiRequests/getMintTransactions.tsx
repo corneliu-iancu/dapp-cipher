@@ -11,10 +11,10 @@ const fetchMintTransactions = (url: string) =>
   async function getMintTransactions({
     apiAddress,
     contractAddress,
-    tokenIdentifier,
+    // tokenIdentifier,
     timeout
   }: GetMintTransactionsInterface) {
-    console.log('>> get sc mint transactions.', tokenIdentifier);
+    // console.log('>> get sc mint transactions.', tokenIdentifier);
     try {
       const { data } = await axios.get(
         `${apiAddress}${url.replace('{address}', contractAddress)}`,
