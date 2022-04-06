@@ -1,5 +1,5 @@
 export const contractAddress =
-  'erd1qqqqqqqqqqqqqpgqwp9mxc0eayzwvv3wac5uc0krafp8skctdpqs8jj0lx';
+  'erd1qqqqqqqqqqqqqpgq4yxvv5wn0tfkkj0xhjygq6sw25w8ygz7988sz6tytq';
 
 export const dAppName = 'GELD Dapp';
 

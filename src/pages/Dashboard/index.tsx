@@ -33,7 +33,7 @@ const Dashboard = () => {
     getESDTBalance({
       apiAddress: 'https://testnet-gateway.elrond.com', // extract from network object.
       address: account.address,
-      tokenId: 'GELD-9f0b77', //tokenIdentifier, // TODO Read from SC.
+      tokenId: 'GELD-9f0b77', // tokenIdentifier, // @todo: Read from SC.
       timeout: 3000,
       contractAddress
     }).then(({ data, success: transactionsFetched }) => {
@@ -41,6 +41,10 @@ const Dashboard = () => {
         console.error('Failed to read user balance.');
         return;
       }
+      console.log(
+        '>> data.data.tokenData.balance',
+        parseInt(data.data.tokenData.balance) / ESDT_DECIMALS
+      );
       setAccountBalance(parseInt(data.data.tokenData.balance) / ESDT_DECIMALS);
     });
   }, [tokenIdentifier]);
@@ -65,11 +69,12 @@ const Dashboard = () => {
         console.error('Unable to call VM query', err);
       });
   }, []);
+
   const sendWhitelistTx = async (evt: any) => {
     evt.preventDefault();
     const whitelistTransaction = {
       value: 0,
-      data: 'setWhitelist',
+      data: 'whitelist',
       receiver: contractAddress,
       gasLimit: 300000000
     };
@@ -96,18 +101,14 @@ const Dashboard = () => {
             <div className='card-body'>
               <div className='row'>
                 <div className='col-12'>
-                  {/* INSERT WHITELISTING STATUS HERE. */}
                   <WhitelistStatus
                     whiteListStatus={whitelistStatus}
                     setWhitelistStatus={setWhitelistStatus}
                   />
-                  {/* {JSON.stringify(whitelistStatus)} */}
-                  {/* INSERT WHITELISTING ACTION HERE. */}
                   <Whitelist
                     whiteListStatus={whitelistStatus}
                     sendTx={sendWhitelistTx}
                   />
-                  {/* <Swap /> */}
                 </div>
               </div>
             </div>
@@ -115,12 +116,12 @@ const Dashboard = () => {
         </div>
         <div className='col-3 col-md-3 mx-auto'>
           <EsdtBalance balance={account.account.balance / 10 ** 18} />
+          <EsdtBalance
+            className='mt-4'
+            balance={accountBalance}
+            currency='GELD'
+          />
         </div>
-      </div>
-      <div className='row mt-4'>
-        <div className='col-2 col-md-2 mx-auto'></div>
-        <div className='col-6 col-md-6 mx-auto'></div>
-        <div className='col-2 col-md-2 mx-auto'></div>
       </div>
     </div>
   );

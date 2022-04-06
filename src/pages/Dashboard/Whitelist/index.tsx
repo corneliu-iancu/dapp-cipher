@@ -17,15 +17,12 @@ const Whitelist = ({ whiteListStatus, sendTx }: any) => {
     <div className='container'>
       <form className={''} onSubmit={sendTx}>
         <div className='row mb-4'>
-          {/* <p className='mb-0'>LKMEX</p>
-          <p className='mb-0'>FREE</p> */}
           <div className='col-6'>
-            <p className='mb-0'>Whitelist:</p>
+            <p className='mb-0'>{'You will receive:'}</p>
           </div>
           <div className='col-6 text-right d-flex justify-content-end'>
             <div className='d-flex align-items-center justify-content-around'>
-              {/* <Price currency={'EGLD'} amount={egldMintPrice} /> */}
-              Free
+              10.000 GELD
             </div>
           </div>
         </div>
@@ -68,7 +65,7 @@ const WhitelistStatus = ({ whiteListStatus, setWhitelistStatus }: any) => {
   }, []);
 
   return (
-    <div className='text-center my-4 border-top border-bottom border-dark bg-dark text-light  py-2'>
+    <div className='text-center my-4 border-top border-bottom border-dark py-2'>
       {whiteListStatus && <p className='my-0'>You are already whitelisted.</p>}
       {!whiteListStatus && (
         <p className='my-0'>You elgible for whitelisting.</p>

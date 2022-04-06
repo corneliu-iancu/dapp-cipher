@@ -3,11 +3,11 @@ import { ReactComponent as $EGLD } from '../../assets/img/$egld.svg';
 // import { ReactComponent as $GELD } from '../../assets/img/$geld.svg';
 import style from './esdtBalance.module.scss';
 
-const EsdtBalance = ({ balance, currency }: any) => {
+const EsdtBalance = ({ className, balance, currency }: any) => {
   // console.log(balance);
 
   return (
-    <div className='card rounded border border-dark'>
+    <div className={`${className} card rounded border border-dark`.trim()}>
       <div className='card-body'>
         <div className='row'>
           <div className='col-12 text-end'>
@@ -20,7 +20,7 @@ const EsdtBalance = ({ balance, currency }: any) => {
             <p className='m-0 fw-bold'>
               {balance.toFixed(4)} {currency}
             </p>
-            <p className='m-0 fw-light'>$0.12</p>
+            <p className='m-0 fw-light'>$0.00</p>
           </div>
         </div>
       </div>
