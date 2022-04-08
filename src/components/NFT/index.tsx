@@ -6,11 +6,16 @@ interface NFT {
   nonce: number;
 }
 
+// currently unused.
 const NftDisplay = ({ identifier, nonce }: NFT) => {
-  // console.log(identifier, nonce);
   return (
-    <div className='mx-5 shadow px-4 py-2 border border-dark mb-2 d-flex rounded justify-content-between align-items-center'>
-      <NftIcon /> <b>{nonce}</b> {identifier}
+    <div className='px-4 py-2 mb-2 d-flex justify-content-around align-items-center'>
+      <div>
+        <NftIcon width={25} height={25} />
+      </div>
+      <div>
+        <b>{nonce}</b> {identifier}
+      </div>
     </div>
   );
 };

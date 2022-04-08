@@ -3,8 +3,18 @@
 
   $body: #000;
   $headings-font-weight: 300 !important;
-$primary: #1b46c2;
+  $primary: #1b46c2;
   $light: #fafafa;
+
+  $gray-100: #f8f9fa !default;
+  $gray-200: #e9ecef !default;
+  $gray-300: #dee2e6 !default;
+  $gray-400: #ced4da !default;
+  $gray-500: #adb5bd !default;
+  $gray-600: #6c757d !default;
+  $gray-700: #495057 !default;
+  $gray-800: #18307E !default; // My custom gray.
+  $gray-900: #212529 !default;
 
   $headings-font-weight: 300 !important;
   $a: #1392ff;
@@ -19,8 +29,7 @@ Override Bootstrap variables only above.
 
 @import '~bootstrap/scss/reboot';
 
-
-
+// @todo: fix me.
 .custom-classname.btn-primary {
   background-color: green;
 }
@@ -28,33 +37,33 @@ Override Bootstrap variables only above.
 -------------------------------------------------- */
 html {
   min-height: 100%;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .wrapper {
   min-height: 100vh;
 }
 
-.opacity-6 {
-  opacity: 0.6;
-}
+// .opacity-6 {
+//   opacity: 0.6;
+// }
 
-.dapp-icon {
-  padding: 5px;
-  border-radius: 50%;
-  background-color: $light;
-  width: 65px;
-  height: 65px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+// .dapp-icon {
+//   padding: 5px;
+//   border-radius: 50%;
+//   background-color: $light;
+//   width: 65px;
+//   height: 65px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin: 0 auto;
 
-  &.icon-medium {
-    width: 80px;
-    height: 80px;
-  }
-}
+//   &.icon-medium {
+//     width: 80px;
+//     height: 80px;
+//   }
+// }
 
 /* Navbar
 -------------------------------------------------- */

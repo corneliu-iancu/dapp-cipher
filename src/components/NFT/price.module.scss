@@ -1,0 +1,16 @@
+.price {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 32px;
+    font-weight: 100;
+
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+.amount {
+    min-width: 4rem;
+    text-align: right;
+}

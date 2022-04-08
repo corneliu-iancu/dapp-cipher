@@ -16,6 +16,7 @@ import {
 import { contractAddress } from 'config';
 import { getAddressNFTs } from '../../apiRequests';
 import getMintTransactions from '../../apiRequests/getMintTransactions';
+import { ReactComponent as EGLD } from '../../assets/img/$egld.svg';
 // import NftDisplay from '../../components/NFT';
 import ContractBalance from './Balance/contract';
 import MintForm from './Form/MintForm';
@@ -65,10 +66,28 @@ const Mint = () => {
       }).then(({ data, success }) => {
         if (success) {
           setOwnerNfts(data);
-          console.log('>> Set user nfts.', ownerNfts);
+          console.log('>> Set user nfts.', data, ownerNfts);
         }
       }); // handle erros
     }
+  }, [tokenIdentifier, hasPendingTransactions]);
+
+  // @docs: Read all mint transaction on the current contract.
+  React.useEffect(() => {
+    if (!tokenIdentifier) return;
+
+    getMintTransactions({
+      apiAddress: network.apiAddress,
+      contractAddress,
+      tokenIdentifier,
+      timeout: 3000 // SET DEFAULT TIMEOUT IN SETTINGS.
+    }).then(({ data, success }: any) => {
+      // console.log(data, success);
+      if (success) {
+        // @todo: format date utility for displaying timestamp.
+        setTransactions(data);
+      }
+    });
   }, [tokenIdentifier, hasPendingTransactions]);
 
   // @docs: handle blockchain mint action
@@ -79,7 +98,7 @@ const Mint = () => {
     const royalties = 100; // meaning 1%? maybe TBD.
     const selling_price = 10 ** 16;
     const mintTransaction = {
-      value: 10 ** 18,
+      value: 10 ** 16,
       data: `createNft@${new Buffer(name).toString('hex')}@${royalties.toString(
         16
       )}@${new Buffer(uri).toString('hex')}@${selling_price.toString(16)}`,
@@ -105,35 +124,23 @@ const Mint = () => {
     }
   };
 
-  // @docs: Read all mint transaction on the current contract.
-  React.useEffect(() => {
-    if (!tokenIdentifier) return;
-
-    getMintTransactions({
-      apiAddress: network.apiAddress,
-      contractAddress,
-      tokenIdentifier,
-      timeout: 3000 // SET DEFAULT TIMEOUT IN SETTINGS.
-    }).then(({ data, success }: any) => {
-      console.log(data, success);
-      if (success) {
-        // @todo: format date utility for displaying timestamp.
-        setTransactions(data);
-      }
-    });
-  }, [tokenIdentifier, hasPendingTransactions]);
   return (
-    <div className='container-fluid py-4'>
+    <div className='container py-4'>
       <div className='row'>
-        <div className='col-12 col-md-12 d-flex justify-content-between'>
-          <h4 className='py-4'>{'REWARDS VAULT'}</h4>
+        <div className='col-8 col-md-8 d-flex justify-content-between'>
+          <h4 className='py-4'>
+            {'MINT ( whitelist ) '}
+            {tokenIdentifier}
+          </h4>
+        </div>
+        <div className='col-4 col-md-4'>
           <ContractBalance address={contractAddress} />
         </div>
       </div>
       <div className='row mt-4'>
-        <div className='col-8 col-md-8 d-flex'>
+        <div className='col-8 col-md-8'>
           <div className='flex-fill rounded border border-dark'>
-            <div className='card-body p-1'>
+            <div className='card-body d-flex flex-fill'>
               <MintForm handleMintAction={onHandleMintAction} />
             </div>
           </div>
@@ -157,14 +164,22 @@ const Mint = () => {
                     .sort((a: any, b: any): any => {
                       return a.timestamp < b.timestamp;
                     })
+                    .filter((a: any) => {
+                      return a.action.name == 'createNft';
+                    })
                     .slice(0, 5)
                     .map((tr: any) => (
                       <tr key={tr.txHash}>
                         <td>#32123</td>
-                        <td>{(tr.value * 10 ** -18).toFixed(3)} EGLD</td>
+                        <td>
+                          <span className='d-flex align-items-center'>
+                            <EGLD className='digital-currency small' />
+                            <>{(tr.value * 10 ** -18).toFixed(4)}</>
+                          </span>
+                        </td>
                         <td className='text-right'>
                           <small>
-                            {new Date(tr.timestamp * 1000).toUTCString()}
+                            {new Date(tr.timestamp * 1000).toLocaleString()}
                           </small>
                         </td>
                       </tr>

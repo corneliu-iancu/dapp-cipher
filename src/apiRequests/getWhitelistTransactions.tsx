@@ -1,31 +1,31 @@
 import axios from 'axios';
 
-interface GetMintTransactionsInterface {
+interface GetWhitelistTransactionsInterface {
   apiAddress: string;
   contractAddress: string;
-  tokenIdentifier: string;
+  query: string;
   timeout: number;
 }
 
-const fetchMintTransactions = (url: string) =>
-  async function getMintTransactions({
+const fetchTransactions = (url: string) =>
+  async function getWhitelistTransactions({
     apiAddress,
     contractAddress,
-    // tokenIdentifier,
+    query,
     timeout
-  }: GetMintTransactionsInterface) {
-    // console.log('>> get sc mint transactions.', tokenIdentifier);
+  }: GetWhitelistTransactionsInterface) {
+    console.log('>> read whitelist transactions.');
     try {
       const { data } = await axios.get(
         `${apiAddress}${url.replace('{address}', contractAddress)}`,
         {
           params: {
-            withLogs: false
-            // token: tokenIdentifier
+            withLogs: false,
+            search: query,
             //   sender: address,
             //   receiver: contractAddress,
             //   condition: 'must',
-            //   size: 25
+            size: 25
           },
           timeout
         }
@@ -42,8 +42,9 @@ const fetchMintTransactions = (url: string) =>
     }
   };
 
-const getMintTransactions = fetchMintTransactions(
+//used to read contract transactions.
+const getWhitelistTransactions = fetchTransactions(
   '/accounts/{address}/transactions'
 );
 
-export default getMintTransactions;
+export default getWhitelistTransactions;
