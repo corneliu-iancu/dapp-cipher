@@ -2,7 +2,8 @@ import * as React from 'react';
 import {
   useGetAccountInfo,
   transactionServices,
-  useGetNetworkConfig
+  useGetNetworkConfig,
+  useGetPendingTransactions
 } from '@elrondnetwork/dapp-core';
 import {
   Address,
@@ -10,30 +11,38 @@ import {
   ProxyProvider,
   Query
 } from '@elrondnetwork/erdjs';
-
+import getWhitelistTransactions from 'apiRequests/getWhitelistTransactions';
 import Deadline from 'common/Deadline';
 import EsdtBalance from 'common/EsdtBalance';
+import Transaction from 'common/Transaction';
 import { ESDT_DECIMALS, contractAddress } from 'config';
-import useTokenIdentifier from 'hooks/useTokenIdentifier';
+import useEsdtIdentifier from 'hooks/useEsdtIdentifier';
+// import useTokenIdentifier from 'hooks/useTokenIdentifier';
 import { getESDTBalance } from './helpers/asyncRequests';
 import { Whitelist, WhitelistStatus } from './Whitelist';
 
 const Dashboard = () => {
   const account = useGetAccountInfo();
   const { sendTransactions } = transactionServices;
+  const { hasPendingTransactions } = useGetPendingTransactions();
   const [accountBalance, setAccountBalance] = React.useState<number>(0);
+  const [whitelistTxs, setWhitelisTxs] = React.useState([]);
   const [whitelistStatus, setWhitelistStatus] = React.useState(false);
   const [whitelistStartTimestamp, setWhitelistStartTimestamp] =
     React.useState(0);
   const { network } = useGetNetworkConfig();
-  const [tokenIdentifier] = useTokenIdentifier();
+  const [esdtIdentifier] = useEsdtIdentifier();
 
+  // Read mint transactions.
+
+  // Reads ESDT Balance.
   React.useEffect(() => {
-    if (!tokenIdentifier) return;
+    if (!esdtIdentifier) return;
+    // console.log(esdtIdentifier);
     getESDTBalance({
       apiAddress: 'https://testnet-gateway.elrond.com', // extract from network object.
       address: account.address,
-      tokenId: 'GELD-9f0b77', // tokenIdentifier, // @todo: Read from SC.
+      tokenId: esdtIdentifier, // tokenIdentifier, // @todo: Read from SC.
       timeout: 3000,
       contractAddress
     }).then(({ data, success: transactionsFetched }) => {
@@ -47,7 +56,7 @@ const Dashboard = () => {
       );
       setAccountBalance(parseInt(data.data.tokenData.balance) / ESDT_DECIMALS);
     });
-  }, [tokenIdentifier]);
+  }, [esdtIdentifier, hasPendingTransactions]);
 
   // Reads whitelist start date.
   React.useEffect(() => {
@@ -68,8 +77,19 @@ const Dashboard = () => {
       .catch((err) => {
         console.error('Unable to call VM query', err);
       });
+
+    // read whitelist txs.
+    getWhitelistTransactions({
+      apiAddress: network.apiAddress,
+      contractAddress: contractAddress,
+      query: '',
+      timeout: 3000 // SET DEFAULT TIMEOUT IN SETTINGS.
+    }).then(({ data, success }: any) => {
+      if (success) setWhitelisTxs(data);
+    });
   }, []);
 
+  // Whitelist Action on click evt.
   const sendWhitelistTx = async (evt: any) => {
     evt.preventDefault();
     const whitelistTransaction = {
@@ -105,6 +125,13 @@ const Dashboard = () => {
                     whiteListStatus={whitelistStatus}
                     setWhitelistStatus={setWhitelistStatus}
                   />
+                  <ul>
+                    {whitelistTxs
+                      .filter((tx: any) => tx.function === 'whitelist')
+                      .map((tx: any, index) => (
+                        <Transaction key={index} transaction={tx} />
+                      ))}
+                  </ul>
                   <Whitelist
                     whiteListStatus={whitelistStatus}
                     sendTx={sendWhitelistTx}
@@ -120,6 +147,7 @@ const Dashboard = () => {
             className='mt-4'
             balance={accountBalance}
             currency='GELD'
+            decimals={0}
           />
         </div>
       </div>

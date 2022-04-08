@@ -41,7 +41,6 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
       const decoded = Buffer.from(encoded, 'base64').toString('hex');
       const decodedInt = parseInt(decoded, 16) / 10 ** 18;
       setEgldMintPrice(decodedInt);
-      // console.log('>> minting price:', decodedInt);
     });
 
     const getMintingRatioQuery = new Query({
@@ -54,7 +53,6 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
       const decoded = Buffer.from(encoded, 'base64').toString('hex');
       const decodedInt = parseInt(decoded, 16);
       setEgldEsdtRatio(decodedInt);
-      // console.log('>> minting ratio:', decodedInt);
     });
   }, []);
 
@@ -74,7 +72,7 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
       </div>
       <div className='row mb-4 rounded mt-4 py-2 border-bottom border-top'>
         <div className='col-6'>
-          <p className='mb-0'>You will receive</p>
+          <p className='mb-0'>{'You will receive:'}</p>
         </div>
         <div className='col-6 text-right d-flex justify-content-end'>
           <div className='d-flex align-items-center justify-content-around'>
@@ -86,8 +84,6 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
         </div>
       </div>
       <div className='row mb-4'>
-        {/* <p className='mb-0'>LKMEX</p>
-        <p className='mb-0'>FREE</p> */}
         <div className='col-6'>
           <p className='mb-0'>Mint price:</p>
         </div>
@@ -97,11 +93,6 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
           </div>
         </div>
       </div>
-      {/* <div className='row mb-4'> */}
-      {/* <p className='mb-0'>EGLD</p>
-      <p className='mb-0'>FREE</p> */}
-      {/* <Price currency={'LKMEX'} amount={reward_amount} /> */}
-      {/* </div> */}
       <div className='row'>
         <button className='btn btn-block btn-outline-dark'>MINT</button>
       </div>

@@ -130,7 +130,7 @@ const Mint = () => {
         <div className='col-8 col-md-8 d-flex justify-content-between'>
           <h4 className='py-4'>
             {'MINT ( whitelist ) '}
-            {/* {account.address} */}
+            {tokenIdentifier}
           </h4>
         </div>
         <div className='col-4 col-md-4'>

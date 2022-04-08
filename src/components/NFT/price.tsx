@@ -11,14 +11,13 @@ interface PriceInterface {
 const Price = ({ amount, currency }: PriceInterface) => {
   return (
     <div className={`border-dark ${style.price}`}>
-      {/* <span className='fs-5'>{currency}</span> */}
       {currency && currency == 'GELD' && (
         <$GELD className='digital-currency small' />
       )}
       {currency && currency == 'EGLD' && (
         <$EGLD className='digital-currency small' />
       )}
-      <span>{amount.toFixed(2)}</span>
+      <span className={style.amount}>{amount.toFixed(2)}</span>
     </div>
   );
 };

@@ -1,41 +1,32 @@
 <svg id="GELT" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="115" height="115" viewBox="0 0 115 115">
   <defs>
-    <linearGradient id="linear-gradient" x1="0.5" y1="-0.73" x2="0.5" y2="2.009" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#b46969"/>
-      <stop offset="1" stop-color="#121214"/>
+    <linearGradient id="linear-gradient" x1="0.5" y1="-0.348" x2="0.527" y2="3.981" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1d79b1"/>
+      <stop offset="1" stop-color="#274026"/>
     </linearGradient>
-    <linearGradient id="linear-gradient-2" x1="-0.552" y1="-1.059" x2="1.612" y2="2.653" xlink:href="#linear-gradient"/>
-    <linearGradient id="linear-gradient-3" x1="1.394" y1="-0.848" x2="0.103" y2="2.126" xlink:href="#linear-gradient"/>
-    <linearGradient id="linear-gradient-4" x1="-0.069" y1="-0.244" x2="1.102" y2="2.566" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#350404"/>
-      <stop offset="1" stop-color="#ede8ff"/>
+    <linearGradient id="linear-gradient-2" x1="1" y1="-0.105" x2="-0.551" y2="3.95" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#113268"/>
+      <stop offset="1" stop-color="#274026"/>
     </linearGradient>
-    <linearGradient id="linear-gradient-5" x1="1.096" x2="-0.211" y2="2.212" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#411616"/>
-      <stop offset="1" stop-color="#ede8ff"/>
-    </linearGradient>
-    <linearGradient id="linear-gradient-6" x1="0.5" y1="-0.245" x2="0.5" y2="1.412" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#c58e8e"/>
-      <stop offset="1" stop-color="#131315"/>
-    </linearGradient>
-    <linearGradient id="linear-gradient-7" x1="-0.335" y1="1.205" x2="1.149" y2="-0.293" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#c58e8e"/>
-      <stop offset="1" stop-color="#121214"/>
-    </linearGradient>
-    <linearGradient id="linear-gradient-8" x1="1.19" y1="1.278" x2="-0.143" y2="-0.373" xlink:href="#linear-gradient-7"/>
+    <linearGradient id="linear-gradient-3" x1="0" y1="-0.07" x2="1.55" y2="3.948" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-4" x1="0.5" y1="1.338" x2="-0.117" y2="-2.821" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-5" x1="0.449" y1="1.264" x2="1.087" y2="-2.855" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-6" y1="0" x2="0.529" y2="1.894" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-7" x1="-0.065" y1="1" x2="1.182" y2="-0.891" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-8" x1="1.084" y1="1.03" x2="-0.216" y2="-0.893" xlink:href="#linear-gradient-2"/>
   </defs>
-  <g id="Rectangle_41" data-name="Rectangle 41" fill="#fff" stroke="rgba(68,163,197,0.05)" stroke-width="2">
+  <g id="Rectangle_41" data-name="Rectangle 41" fill="#fff" stroke="rgba(15,59,86,0.46)" stroke-width="2">
     <rect width="115" height="115" rx="57.5" stroke="none"/>
     <rect x="1" y="1" width="113" height="113" rx="56.5" fill="none"/>
   </g>
-  <g id="Top_Group" data-name="Top Group" transform="translate(9 21)">
-    <path id="Polygon_2" data-name="Polygon 2" d="M14,0,28,18H0Z" transform="translate(35 1)" fill="url(#linear-gradient)"/>
+  <g id="Top_Group" data-name="Top Group" transform="translate(9 30)">
+    <path id="Path_16" data-name="Path 16" d="M14,0,28,18H0Z" transform="translate(35 1)" fill="url(#linear-gradient)"/>
     <path id="Path_13" data-name="Path 13" d="M14.5,0,29,18H0Z" transform="translate(69 1)" fill="url(#linear-gradient-2)"/>
     <path id="Path_12" data-name="Path 12" d="M14.5,0,29,18H0Z" transform="translate(0 1)" fill="url(#linear-gradient-3)"/>
     <path id="Path_14" data-name="Path 14" d="M14,0,28,19H0Z" transform="translate(46 19) rotate(180)" fill="url(#linear-gradient-4)"/>
     <path id="Path_15" data-name="Path 15" d="M14.5,0,29,19H0Z" transform="translate(81 19) rotate(180)" fill="url(#linear-gradient-5)"/>
   </g>
-  <g id="Bottom" transform="translate(9.354 43.943)">
+  <g id="Bottom" transform="translate(9.354 52.943)">
     <path id="Polygon_7" data-name="Polygon 7" d="M15.5,0,31,50H0Z" transform="translate(64.646 50.057) rotate(180)" fill="url(#linear-gradient-6)"/>
     <path id="Path_7" data-name="Path 7" d="M0,50.217,14.383.524H45.33Z" transform="translate(52.316 -0.524)" fill="url(#linear-gradient-7)"/>
     <path id="Path_6" data-name="Path 6" d="M45.33,50.217,30.947.524H0Z" transform="translate(0 -0.524)" fill="url(#linear-gradient-8)"/>
