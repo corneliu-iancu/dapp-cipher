@@ -24,8 +24,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Update NPM
-          command: "sudo npm install -g npm"
+          name: Check NPM Version
+          command: "npm --version"
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
