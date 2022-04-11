@@ -1,4 +1,4 @@
-# @elrondnetwork/dapp-template
+# @elrondnetwork/dapp-cipher [![Netlify Status](https://api.netlify.com/api/v1/badges/3493ca79-b999-416a-b873-284cfd720941/deploy-status)](https://app.netlify.com/sites/legendary-centaur-914538/deploys) [![CircleCI](https://circleci.com/gh/corneliu-iancu/dapp-cipher/tree/main.svg?style=svg)](https://circleci.com/gh/corneliu-iancu/dapp-cipher/tree/main)
 The __Elrond dApp Template__, built using [React.js](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/).
 It's a basic implementation of [@elrondnetwork/dapp-core](https://www.npmjs.com/package/@elrondnetwork/dapp-core), providing the basics for Elrond authentication and TX signing.
 
