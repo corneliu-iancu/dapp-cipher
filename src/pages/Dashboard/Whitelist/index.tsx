@@ -68,7 +68,7 @@ const WhitelistStatus = ({ whiteListStatus, setWhitelistStatus }: any) => {
     <div className='text-center my-4 border-top border-bottom border-dark py-2'>
       {whiteListStatus && <p className='my-0'>You are already whitelisted.</p>}
       {!whiteListStatus && (
-        <p className='my-0'>You elgible for whitelisting.</p>
+        <p className='my-0'>You are elgible for whitelisting.</p>
       )}
     </div>
   );

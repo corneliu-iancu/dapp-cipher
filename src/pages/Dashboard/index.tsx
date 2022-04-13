@@ -13,12 +13,12 @@ import {
 } from '@elrondnetwork/erdjs';
 import getWhitelistTransactions from 'apiRequests/getWhitelistTransactions';
 import Deadline from 'common/Deadline';
-import EsdtBalance from 'common/EsdtBalance';
 import Transaction from 'common/Transaction';
 import { ESDT_DECIMALS, contractAddress } from 'config';
 import useEsdtIdentifier from 'hooks/useEsdtIdentifier';
 // import useTokenIdentifier from 'hooks/useTokenIdentifier';
 import { getESDTBalance } from './helpers/asyncRequests';
+import MintToolbar from './MintToolbar';
 import { Whitelist, WhitelistStatus } from './Whitelist';
 
 const Dashboard = () => {
@@ -46,15 +46,15 @@ const Dashboard = () => {
       timeout: 3000,
       contractAddress
     }).then(({ data, success: transactionsFetched }) => {
+      let _accountBalance = 0;
       if (!transactionsFetched) {
-        console.error('Failed to read user balance.');
+        console.warn('Failed to read user balance.');
+        setAccountBalance(_accountBalance);
         return;
       }
-      console.log(
-        '>> data.data.tokenData.balance',
-        parseInt(data.data.tokenData.balance) / ESDT_DECIMALS
-      );
-      setAccountBalance(parseInt(data.data.tokenData.balance) / ESDT_DECIMALS);
+      _accountBalance = parseInt(data.data.tokenData.balance) / ESDT_DECIMALS;
+      console.log('>> data.data.tokenData.balance', _accountBalance);
+      setAccountBalance(_accountBalance);
     });
   }, [esdtIdentifier, hasPendingTransactions]);
 
@@ -113,6 +113,12 @@ const Dashboard = () => {
   return (
     <div className='container-fluid py-4'>
       <div className='row'>
+        <MintToolbar
+          egldBalance={account.account.balance / 10 ** 18}
+          esdtBalance={accountBalance}
+        />
+      </div>
+      <div className='row'>
         <div className='col-3 col-md-3 mx-auto'>
           <Deadline whitelistStartTimestamp={whitelistStartTimestamp} />
         </div>
@@ -141,15 +147,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className='col-3 col-md-3 mx-auto'>
-          <EsdtBalance balance={account.account.balance / 10 ** 18} />
-          <EsdtBalance
-            className='mt-4'
-            balance={accountBalance}
-            currency='GELD'
-            decimals={0}
-          />
-        </div>
+        <div className='col-3 col-md-3 mx-auto'></div>
       </div>
     </div>
   );
