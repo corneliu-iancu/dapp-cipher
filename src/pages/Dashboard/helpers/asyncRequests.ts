@@ -58,6 +58,7 @@ const fetchESDTTokens = (url: string) =>
     return data.data.data.returnData;
   };
 
+//@todo: remove me
 const fetchESDTBalance = (url: string) =>
   async function getESDTBalance({
     apiAddress,
@@ -116,6 +117,7 @@ const fetchUSDperEGLDValue = (url: string) =>
 export const getTransactions = fetchTransactions('/transactions');
 export const getTransactionsCount = fetchTransactions('/transactions/count');
 export const getESDTTokens = fetchESDTTokens('/vm-values/query');
+// todo: remove me.
 export const getESDTBalance = fetchESDTBalance(
   '/address/*bech32Address*/esdt/*tokenIdentifier*'
 );

@@ -28,9 +28,11 @@ const EsdtBalance = ({
                 <p className='m-0 fw-bold'>
                   {balance.toFixed(decimals)} {currency}
                 </p>
+              </div>
+              <div className='col-12'>
                 <p className='m-0 fw-lighter'>{currency != ESDT && '$0.00'}</p>
                 <p className='m-0 fw-lighter'>
-                  {currency == ESDT && 'to be determined'}
+                  <small>{currency == ESDT && 'to be determined'}</small>
                 </p>
               </div>
             </div>
