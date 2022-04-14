@@ -150,6 +150,7 @@ const Mint = () => {
             </div>
           </div>
         </div>
+        {/* Transactions bellow. */}
         <div className='col-12 col-md-6 offset-md-1 col-lg-6 d-flex flex-column'>
           <div className='card flex-fill rounded'>
             <div className='card-body'>

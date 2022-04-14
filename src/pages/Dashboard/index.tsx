@@ -118,10 +118,10 @@ const Dashboard = () => {
         />
       </div>
       <div className='row'>
-        <div className='col-3 col-md-3 mx-auto'>
+        <div className='col-4 col-md-4'>
           <Deadline whitelistStartTimestamp={whitelistStartTimestamp} />
         </div>
-        <div className='col-6 col-md-6 mx-auto'>
+        <div className='col-8 col-md-8'>
           <div className='card rounded border border-dark'>
             <div className='card-body'>
               <div className='row'>
@@ -146,7 +146,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className='col-3 col-md-3 mx-auto'></div>
       </div>
     </div>
   );
