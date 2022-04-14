@@ -1,10 +1,11 @@
 import React from 'react';
 import { logout, useGetAccountInfo } from '@elrondnetwork/dapp-core';
-import { Navbar as BsNavbar, NavItem, Nav } from 'react-bootstrap';
+import { NavItem, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { dAppName } from 'config';
 import { routeNames } from 'routes';
 import { ReactComponent as ElrondLogo } from './../../../assets/img/elrond.svg';
+import style from './navbar.module.scss';
 
 const Navbar = () => {
   const { address } = useGetAccountInfo();
@@ -16,46 +17,62 @@ const Navbar = () => {
   const isLoggedIn = Boolean(address);
 
   return (
-    <BsNavbar className='bg-white border-bottom border-dark px-4 py-3'>
-      <div className='container-fluid'>
-        <Link
-          className='d-flex align-items-center navbar-brand mr-0'
-          to={isLoggedIn ? routeNames.dashboard : routeNames.home}
-        >
-          <ElrondLogo className='elrond-logo' />
-          <span className='dapp-name text-muted'>{dAppName}</span>
-        </Link>
+    <Nav className={`${style.appNavigation} justify-content-between px-4 py-3`}>
+      {/* <div className='container-fluid'> */}
+      <Link
+        className='d-flex align-items-center navbar-brand'
+        to={isLoggedIn ? routeNames.dashboard : routeNames.home}
+      >
+        <ElrondLogo className='elrond-logo' />
+        <span className='dapp-name text-muted'>{dAppName}</span>
+      </Link>
 
-        <Nav className='ml-auto'>
-          <NavItem className='mr-4'>
-            <Link
-              className='d-flex align-items-center navbar-brand mr-0'
-              to={isLoggedIn ? routeNames.dashboard : routeNames.home}
+      <Nav className='ml-auto d-none d-lg-flex'>
+        <NavItem className={'d-flex align-items-center mx-2'}>
+          <Link
+            className={`${style.appNavigationItem} btn btn-outline-primary px-2`}
+            to={isLoggedIn ? routeNames.dashboard : routeNames.home}
+          >
+            {'Whitelist'}
+          </Link>
+        </NavItem>
+        <NavItem className={'d-flex align-items-center mx-2'}>
+          <Link
+            className={`${style.appNavigationItem} btn btn-outline-primary px-2 `}
+            to={isLoggedIn ? routeNames.mint : routeNames.home}
+          >
+            {'Mint'}
+          </Link>
+        </NavItem>
+        <NavItem className={'d-flex align-items-center mx-2'}>
+          <Link
+            className={`${style.appNavigationItem} btn btn-outline-primary disabled px-2 `}
+            to={isLoggedIn ? routeNames.mint : routeNames.home}
+          >
+            {'Marketplace'}
+          </Link>
+        </NavItem>
+        <NavItem className={'d-flex align-items-center mx-2'}>
+          <Link
+            className={`${style.appNavigationItem} btn btn-outline-primary disabled px-2 `}
+            to={isLoggedIn ? routeNames.mint : routeNames.home}
+          >
+            {'Provenance'}
+          </Link>
+        </NavItem>
+        {isLoggedIn && (
+          <NavItem>
+            <button
+              className='btn btn-outline-primary btn-rounded'
+              onClick={handleLogout}
             >
-              <span className='text-muted'>{'Dashboard'}</span>
-            </Link>
+              Log out
+            </button>
           </NavItem>
-          <NavItem className='mr-4'>
-            <Link
-              className='d-flex align-items-center navbar-brand mr-0'
-              to={isLoggedIn ? routeNames.mint : routeNames.home}
-            >
-              <span className='text-muted'>{'Mint'}</span>
-            </Link>
-          </NavItem>
-          {isLoggedIn && (
-            <NavItem>
-              <button
-                className='btn btn-outline-primary btn-rounded pl-4 pr-4'
-                onClick={handleLogout}
-              >
-                Log out
-              </button>
-            </NavItem>
-          )}
-        </Nav>
-      </div>
-    </BsNavbar>
+        )}
+      </Nav>
+      {/* </div> */}
+    </Nav>
   );
 };
 

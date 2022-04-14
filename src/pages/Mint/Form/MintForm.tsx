@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  // transactionServices,
-  // useGetAccountInfo,
-  // useGetPendingTransactions,
-  // refreshAccount,
-  useGetNetworkConfig
-} from '@elrondnetwork/dapp-core';
+import { useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import {
   Address,
   ContractFunction,
@@ -13,8 +7,7 @@ import {
   Query
 } from '@elrondnetwork/erdjs';
 
-import { COIN_NAME, NFT_NAME, contractAddress } from 'config';
-import { ReactComponent as $NFT } from '../../../assets/img/$nft.svg';
+import { COIN_NAME, contractAddress } from 'config';
 import Price from '../../../components/NFT/price';
 import style from './form.module.scss';
 
@@ -63,37 +56,28 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
   };
 
   return (
-    <form className={style.form} onSubmit={handleSubmit}>
-      <div className='row border border-dark rounded'>
-        <div className='col-8 px-2 py-2 border-right border-dark'>1</div>
-        <div className='col-4 px-2 py-2 d-flex align-items-center text-center justify-content-center'>
-          <$NFT className='mr-2' /> {NFT_NAME}
-        </div>
-      </div>
-      <div className='row mb-4 rounded mt-4 py-2 border-bottom border-top'>
-        <div className='col-6'>
+    <form className={`${style.form}`} onSubmit={handleSubmit}>
+      <div className='d-flex justify-content-between rounded py-2 border-bottom border-top'>
+        <div className=''>
           <p className='mb-0'>{'You will receive:'}</p>
         </div>
-        <div className='col-6 text-right d-flex justify-content-end'>
+        <div className='text-right d-flex justify-content-end'>
           <div className='d-flex align-items-center justify-content-around'>
-            <Price
-              currency={COIN_NAME}
-              amount={egldMintPrice * egldEsdtRatio}
-            />
+            <Price currency={COIN_NAME} amount={egldEsdtRatio} />
           </div>
         </div>
       </div>
-      <div className='row mb-4'>
-        <div className='col-6'>
+      <div className='d-flex justify-content-between rounded py-2 border-bottom'>
+        <div>
           <p className='mb-0'>Mint price:</p>
         </div>
-        <div className='col-6 text-right d-flex justify-content-end'>
+        <div className='text-right d-flex justify-content-end'>
           <div className='d-flex align-items-center justify-content-around'>
             <Price currency={'EGLD'} amount={egldMintPrice} />
           </div>
         </div>
       </div>
-      <div className='row'>
+      <div className='d-flex mt-4'>
         <button className='btn btn-block btn-outline-dark'>MINT</button>
       </div>
     </form>

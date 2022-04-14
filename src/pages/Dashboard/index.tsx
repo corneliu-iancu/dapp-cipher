@@ -15,9 +15,8 @@ import getWhitelistTransactions from 'apiRequests/getWhitelistTransactions';
 import Deadline from 'common/Deadline';
 import Transaction from 'common/Transaction';
 import { ESDT_DECIMALS, contractAddress } from 'config';
-import useEsdtIdentifier from 'hooks/useEsdtIdentifier';
-// import useTokenIdentifier from 'hooks/useTokenIdentifier';
-import { getESDTBalance } from './helpers/asyncRequests';
+import { useEsdtIdentifier } from 'hooks/useEsdtIdentifier';
+import { getESDTBalance } from '../../apiRequests/getEsdtBalance';
 import MintToolbar from './MintToolbar';
 import { Whitelist, WhitelistStatus } from './Whitelist';
 
@@ -40,7 +39,7 @@ const Dashboard = () => {
     if (!esdtIdentifier) return;
     // console.log(esdtIdentifier);
     getESDTBalance({
-      apiAddress: 'https://testnet-gateway.elrond.com', // extract from network object.
+      apiAddress: network.apiAddress,
       address: account.address,
       tokenId: esdtIdentifier, // tokenIdentifier, // @todo: Read from SC.
       timeout: 3000,
@@ -53,7 +52,7 @@ const Dashboard = () => {
         return;
       }
       _accountBalance = parseInt(data.data.tokenData.balance) / ESDT_DECIMALS;
-      console.log('>> data.data.tokenData.balance', _accountBalance);
+      console.log('>> ESDT Balance:', _accountBalance);
       setAccountBalance(_accountBalance);
     });
   }, [esdtIdentifier, hasPendingTransactions]);
@@ -119,10 +118,10 @@ const Dashboard = () => {
         />
       </div>
       <div className='row'>
-        <div className='col-3 col-md-3 mx-auto'>
+        <div className='col-4 col-md-4'>
           <Deadline whitelistStartTimestamp={whitelistStartTimestamp} />
         </div>
-        <div className='col-6 col-md-6 mx-auto'>
+        <div className='col-8 col-md-8'>
           <div className='card rounded border border-dark'>
             <div className='card-body'>
               <div className='row'>
@@ -147,7 +146,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className='col-3 col-md-3 mx-auto'></div>
       </div>
     </div>
   );

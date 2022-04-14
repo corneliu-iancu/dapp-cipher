@@ -13,26 +13,32 @@ import {
   ProxyProvider,
   Query
 } from '@elrondnetwork/erdjs';
+import Transaction from 'common/Transaction';
 import { contractAddress } from 'config';
+import { useEsdtIdentifier, useEsdtBalance } from 'hooks/useEsdtIdentifier';
 import { getAddressNFTs } from '../../apiRequests';
 import getMintTransactions from '../../apiRequests/getMintTransactions';
-import { ReactComponent as EGLD } from '../../assets/img/$egld.svg';
+// import { ReactComponent as EGLD } from '../../assets/img/$egld.svg';
 // import NftDisplay from '../../components/NFT';
-import ContractBalance from './Balance/contract';
+// import Price from '../../components/NFT/price';
+// import ContractBalance from './Balance/contract';
+import MintToolbar from './../Dashboard/MintToolbar';
 import MintForm from './Form/MintForm';
 
 const Mint = () => {
   const [tokenIdentifier, setTokenIdentifier] = React.useState<string>('');
-  const [ownerNfts, setOwnerNfts] = React.useState([]);
+  const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
+      string | null
+    >(null);
+  const [, /* ownerNft */ setOwnerNfts] = React.useState([]);
   const [transactions, setTransactions] = React.useState([]);
   const { account } = useGetAccountInfo();
   // const { address } = account;
   const { network } = useGetNetworkConfig();
   const { sendTransactions } = transactionServices;
   const { hasPendingTransactions } = useGetPendingTransactions();
-  const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
-      string | null
-    >(null);
+  const [esdtIdentifier] = useEsdtIdentifier();
+  const [esdtBalance] = useEsdtBalance(esdtIdentifier, account.address);
 
   // @docs: Read NFT Identifier
   React.useEffect(() => {
@@ -66,7 +72,7 @@ const Mint = () => {
       }).then(({ data, success }) => {
         if (success) {
           setOwnerNfts(data);
-          console.log('>> Set user nfts.', data, ownerNfts);
+          // console.log('>> Set user nfts.', data, ownerNfts);
         }
       }); // handle erros
     }
@@ -125,67 +131,41 @@ const Mint = () => {
   };
 
   return (
-    <div className='container py-4'>
+    <div className='container-fluid py-4'>
       <div className='row'>
-        <div className='col-8 col-md-8 d-flex justify-content-between'>
-          <h4 className='py-4'>
-            {'MINT ( whitelist ) '}
-            {tokenIdentifier}
-          </h4>
-        </div>
-        <div className='col-4 col-md-4'>
-          <ContractBalance address={contractAddress} />
-        </div>
-      </div>
-      <div className='row mt-4'>
-        <div className='col-8 col-md-8'>
-          <div className='flex-fill rounded border border-dark'>
-            <div className='card-body d-flex flex-fill'>
+        <MintToolbar
+          egldBalance={account.balance / 10 ** 18}
+          esdtBalance={esdtBalance}
+        />
+        <div className='col-12 col-md-5 col-lg-5'>
+          <div className='card'>
+            <div className='card-body'>
+              <h4 className='py-4 d-flex justify-content-between'>
+                {'MINT'}
+                <span className=' ms-2 badge rounded-pill bg-dark'>
+                  {tokenIdentifier}
+                </span>
+              </h4>
               <MintForm handleMintAction={onHandleMintAction} />
             </div>
           </div>
         </div>
-        <div className='col-4 col-md-4 d-flex flex-column'>
-          <div className='flex-fill card rounded border border-dark'>
-            <div className='card-body p-1'>
+        {/* Transactions bellow. */}
+        <div className='col-12 col-md-6 offset-md-1 col-lg-6 d-flex flex-column'>
+          <div className='card flex-fill rounded'>
+            <div className='card-body'>
               {/* @todo: this structure can be extracted to a stateless component. */}
-              <table className='table table-borderless'>
-                <thead>
-                  <tr>
-                    <th scope='col'>#</th>
-                    <th scope='col'>amount</th>
-                    <th scope='col' className='text-right'>
-                      date
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactions
-                    .sort((a: any, b: any): any => {
-                      return a.timestamp < b.timestamp;
-                    })
-                    .filter((a: any) => {
-                      return a.action.name == 'createNft';
-                    })
-                    .slice(0, 5)
-                    .map((tr: any) => (
-                      <tr key={tr.txHash}>
-                        <td>#32123</td>
-                        <td>
-                          <span className='d-flex align-items-center'>
-                            <EGLD className='digital-currency small' />
-                            <>{(tr.value * 10 ** -18).toFixed(4)}</>
-                          </span>
-                        </td>
-                        <td className='text-right'>
-                          <small>
-                            {new Date(tr.timestamp * 1000).toLocaleString()}
-                          </small>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
+              {transactions
+                .sort((a: any, b: any): any => {
+                  return a.timestamp < b.timestamp;
+                })
+                .filter((a: any) => {
+                  return a.action.name == 'createNft';
+                })
+                .slice(0, 5)
+                .map((tr: any, index) => (
+                  <Transaction key={index} transaction={tr} />
+                ))}
             </div>
           </div>
         </div>

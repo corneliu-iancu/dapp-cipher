@@ -1,7 +1,7 @@
 export const contractAddress =
   'erd1qqqqqqqqqqqqqpgq4yxvv5wn0tfkkj0xhjygq6sw25w8ygz7988sz6tytq';
 
-export const dAppName = 'GELD Dapp';
+export const dAppName = 'The Sapins Club - Dapp';
 
 // SC Data:
 export const COIN_NAME = 'GELD';

@@ -1,21 +1,37 @@
 import * as React from 'react';
+import moment from 'moment';
+import Price from 'components/NFT/price';
 
 const Transaction = ({ transaction }: any) => {
+  const since = moment(transaction.timestamp * 1000);
+  const now = moment(new Date().getTime());
   return (
-    <div className='border-bottom mb-2 px-2 py-4 d-flex justify-content-between'>
-      <div>{transaction.txHash.substr(0, 6)}</div>
-      <div>{new Date().getTime() / 1000 - transaction.timestamp}</div>
+    <div className='border-bottom px-0 py-4 d-flex justify-content-between align-items-center'>
       <div>
-        Shard {transaction.senderShard} - &gt; Shard {transaction.receiverShard}
+        <a href=''>
+          <small>{transaction.txHash.substr(0, 6)}</small>
+        </a>
       </div>
-      <div>
-        <span className='d-inline-block px-2 rounded bg-dark text-light'>
-          {transaction.function}
-        </span>
+      <div className='text-center' style={{ maxWidth: '5rem' }}>
+        <small>{since.from(now)}</small>
       </div>
       {/* <div>
-        <pre>{JSON.stringify(transaction)}</pre>
+        <small>
+          {'Shard'}
+          {transaction.senderShard} {'Shard'} {transaction.receiverShard}
+        </small>
       </div> */}
+      <div>
+        <small>{transaction.sender.substr(0, 6)}</small>
+      </div>
+      <div>
+        <small className='d-inline-block px-2 py-1 rounded bg-secondary text-light'>
+          {transaction.function}
+        </small>
+      </div>
+      <div>
+        <Price amount={transaction.value / 10 ** 18} currency={'EGLD'} />
+      </div>
     </div>
   );
 };
