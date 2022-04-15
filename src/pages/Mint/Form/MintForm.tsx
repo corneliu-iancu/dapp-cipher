@@ -59,7 +59,7 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
     <form className={`${style.form}`} onSubmit={handleSubmit}>
       <div className='d-flex justify-content-between rounded py-2 border-bottom border-top'>
         <div className=''>
-          <p className='mb-0'>{'You will receive:'}</p>
+          <p className='mb-0'>{'Mint price:'}</p>
         </div>
         <div className='text-right d-flex justify-content-end'>
           <div className='d-flex align-items-center justify-content-around'>
@@ -69,7 +69,7 @@ const MintForm = ({ handleMintAction }: MintFormInterface) => {
       </div>
       <div className='d-flex justify-content-between rounded py-2 border-bottom'>
         <div>
-          <p className='mb-0'>Mint price:</p>
+          <p className='mb-0'>or:</p>
         </div>
         <div className='text-right d-flex justify-content-end'>
           <div className='d-flex align-items-center justify-content-around'>

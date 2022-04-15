@@ -99,15 +99,26 @@ const Mint = () => {
   // @docs: handle blockchain mint action
   // @todo: move to transaction file that only does this operation.
   const onHandleMintAction = async () => {
-    const name = 'ROLZ#' + Math.random().toString(16).substr(2, 10);
-    const uri = 'https://i.ytimg.com/vi/Ci___2-Ielw/maxresdefault.jpg';
+    const name = 'DEV#' + Math.random().toString(16).substr(2, 10);
+    // {QmUUhAmBQKGkSqN775NZAAYUaqd8ssMadFg2UYSECSERz6} / {6584}
+    // https://ipfs.io/ipfs/{hash}/{id}.png
+    const uri = 'https://ipfs.io/ipfs/{hash}/{id}.png';
+    // https://ipfs.io/ipfs/{hash}/{id}.json
+    const uriJson = 'https://ipfs.io/ipfs/{hash}/{id}.json';
+    // https://ipfs.io/ipfs/{hash}/collection.json
+    const collectionJson = 'https://ipfs.io/ipfs/{hash}/collection.json';
+
     const royalties = 100; // meaning 1%? maybe TBD.
     const selling_price = 10 ** 16;
     const mintTransaction = {
       value: 10 ** 16,
       data: `createNft@${new Buffer(name).toString('hex')}@${royalties.toString(
         16
-      )}@${new Buffer(uri).toString('hex')}@${selling_price.toString(16)}`,
+      )}@${new Buffer(uri).toString('hex')}@${new Buffer(uriJson).toString(
+        'hex'
+      )}@${new Buffer(collectionJson).toString('hex')}@${selling_price.toString(
+        16
+      )}`,
       receiver: contractAddress,
       gasLimit: 300000000
     };

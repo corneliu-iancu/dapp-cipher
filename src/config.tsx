@@ -1,5 +1,5 @@
 export const contractAddress =
-  'erd1qqqqqqqqqqqqqpgq4yxvv5wn0tfkkj0xhjygq6sw25w8ygz7988sz6tytq';
+  'erd1qqqqqqqqqqqqqpgq7vysekzk8s3c29yfnjr99avz27my9ghjrxesd762y2';
 
 export const dAppName = 'The Sapins Club - Dapp';
 

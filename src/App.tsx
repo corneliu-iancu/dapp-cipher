@@ -7,7 +7,8 @@ import { routeNames } from 'routes';
 import routes from 'routes';
 import '@elrondnetwork/dapp-core/build/index.css';
 
-const environment = 'testnet';
+// This should be testnet or mainnet in main branch.
+const environment = 'devnet';
 
 const {
   TransactionsToastList,
