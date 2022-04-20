@@ -1,14 +1,20 @@
 import * as React from 'react';
+import { useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import moment from 'moment';
 import Price from 'components/NFT/price';
 
 const Transaction = ({ transaction }: any) => {
   const since = moment(transaction.timestamp * 1000);
   const now = moment(new Date().getTime());
+  const { network } = useGetNetworkConfig();
   return (
     <div className='border-bottom px-0 py-4 d-flex justify-content-between align-items-center'>
       <div>
-        <a href=''>
+        <a
+          target='_blank'
+          rel='noreferrer'
+          href={`${network.explorerAddress}/transactions/${transaction.txHash}`}
+        >
           <small>{transaction.txHash.substr(0, 6)}</small>
         </a>
       </div>

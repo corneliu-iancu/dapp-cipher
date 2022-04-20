@@ -16,6 +16,7 @@ import {
 import Transaction from 'common/Transaction';
 import { contractAddress } from 'config';
 import { useEsdtIdentifier, useEsdtBalance } from 'hooks/useEsdtIdentifier';
+import MetadataFile from 'provenance/metadata.json';
 import { getAddressNFTs } from '../../apiRequests';
 import getMintTransactions from '../../apiRequests/getMintTransactions';
 // import { ReactComponent as EGLD } from '../../assets/img/$egld.svg';
@@ -99,17 +100,30 @@ const Mint = () => {
   // @docs: handle blockchain mint action
   // @todo: move to transaction file that only does this operation.
   const onHandleMintAction = async () => {
-    const name = 'DEV#' + Math.random().toString(16).substr(2, 10);
+    // Load nft configuration.
+    console.log('>> loading configuration');
+    const index = 0;
+    const metadata = MetadataFile;
+    const payload: any = metadata.editions[index];
+    // console.log(metadata);
+    const name = payload.name;
     // {QmUUhAmBQKGkSqN775NZAAYUaqd8ssMadFg2UYSECSERz6} / {6584}
     // https://ipfs.io/ipfs/{hash}/{id}.png
-    const uri = 'https://ipfs.io/ipfs/{hash}/{id}.png';
+    const uri = payload.image.href; //'https://ipfs.io/ipfs/{hash}/{id}.png';
     // https://ipfs.io/ipfs/{hash}/{id}.json
-    const uriJson = 'https://ipfs.io/ipfs/{hash}/{id}.json';
+    const uriJson =
+      'https://ipfs.io/ipfs/' +
+      metadata.metadataFilesIpfsBaseCid +
+      '/' +
+      payload.edition +
+      '.json'; //'https://ipfs.io/ipfs/{hash}/{id}.json';
     // https://ipfs.io/ipfs/{hash}/collection.json
     const collectionJson = 'https://ipfs.io/ipfs/{hash}/collection.json';
-
+    // console.log('>> uri', uri);
+    // console.log('>> uriJson', uriJson);
     const royalties = 100; // meaning 1%? maybe TBD.
-    const selling_price = 10 ** 16;
+    const selling_price = 10 ** 16; // 0.01 EGLD
+
     const mintTransaction = {
       value: 10 ** 16,
       data: `createNft@${new Buffer(name).toString('hex')}@${royalties.toString(

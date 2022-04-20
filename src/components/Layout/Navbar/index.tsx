@@ -4,7 +4,7 @@ import { NavItem, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { dAppName } from 'config';
 import { routeNames } from 'routes';
-import { ReactComponent as ElrondLogo } from './../../../assets/img/elrond.svg';
+// import { ReactComponent as ElrondLogo } from './../../../assets/img/elrond.svg';
 import style from './navbar.module.scss';
 
 const Navbar = () => {
@@ -23,8 +23,8 @@ const Navbar = () => {
         className='d-flex align-items-center navbar-brand'
         to={isLoggedIn ? routeNames.dashboard : routeNames.home}
       >
-        <ElrondLogo className='elrond-logo' />
-        <span className='dapp-name text-muted'>{dAppName}</span>
+        {/* <ElrondLogo className='elrond-logo' /> */}
+        <span className='fw-bolder'>{dAppName}</span>
       </Link>
 
       <Nav className='ml-auto d-none d-lg-flex'>

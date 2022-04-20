@@ -1,0 +1,451 @@
+{
+  "editions": [
+    {
+      "name": "#1",
+      "description": "The Sapiens Club",
+      "edition": 1,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "wine"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/1.png",
+        "hash": "1c7c429c951052c2721df5cb4b374d510a4dffa41db8e6fc41166f50d7361b92",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/1.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "1.png"
+      }
+    },
+    {
+      "name": "#2",
+      "description": "The Sapiens Club",
+      "edition": 2,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "dark-red"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/2.png",
+        "hash": "69c4cbefc6580fc287869df61616701463db39d65654d526309fb613dc0160a6",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/2.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "2.png"
+      }
+    },
+    {
+      "name": "#3",
+      "description": "The Sapiens Club",
+      "edition": 3,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "purple"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/3.png",
+        "hash": "9b0b9e30c048616f700c14aee92f36fdd398510e4ac42a553983029a8fcd6c42",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/3.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "3.png"
+      }
+    },
+    {
+      "name": "#4",
+      "description": "The Sapiens Club",
+      "edition": 4,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "dark-yellow"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/4.png",
+        "hash": "a56985d7719a0799dc42a5746445e111d20585468642df0bb433dfe952db6a19",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/4.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "4.png"
+      }
+    },
+    {
+      "name": "#5",
+      "description": "The Sapiens Club",
+      "edition": 5,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "purple"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/5.png",
+        "hash": "2f440c28c26f16527f85861b1e54352ff0a3ccc74b570c277720a3046a4a055a",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/5.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "5.png"
+      }
+    },
+    {
+      "name": "#6",
+      "description": "The Sapiens Club",
+      "edition": 6,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "neon"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/6.png",
+        "hash": "3056958307b473975b06bdefbacf897f7d617b3bcb765b103f1b659b5c32541d",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/6.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "6.png"
+      }
+    },
+    {
+      "name": "#7",
+      "description": "The Sapiens Club",
+      "edition": 7,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "dark-blue"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/7.png",
+        "hash": "8450aa3068d14ef68cb6c70d3a4ebfd0aebaa5307dbfeea3bb8800509c17bec8",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/7.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "7.png"
+      }
+    },
+    {
+      "name": "#8",
+      "description": "The Sapiens Club",
+      "edition": 8,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "avg-green"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/8.png",
+        "hash": "4e01870ee1ab732535b5f1476cad56fa2c97eb1c81cf23950081641b3e7d422a",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/8.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "8.png"
+      }
+    },
+    {
+      "name": "#9",
+      "description": "The Sapiens Club",
+      "edition": 9,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "green"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/9.png",
+        "hash": "6a93429a12507727fb4ce3dd7f3d906d2b4fb4258475f50ace84ab45ede624e2",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/9.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "9.png"
+      }
+    },
+    {
+      "name": "#10",
+      "description": "The Sapiens Club",
+      "edition": 10,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "dark-orange"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/10.png",
+        "hash": "1e7fbde59d83ff38ac61154fa7a1a944518fc24e3c828d36bed1922680071614",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/10.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "10.png"
+      }
+    },
+    {
+      "name": "#11",
+      "description": "The Sapiens Club",
+      "edition": 11,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "green"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/11.png",
+        "hash": "c1b32c05a0de13fd46f110778189b70df1e89a853e875ee7d4c63a0dbeaf08e1",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/11.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "11.png"
+      }
+    },
+    {
+      "name": "#12",
+      "description": "The Sapiens Club",
+      "edition": 12,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "avg-green"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/12.png",
+        "hash": "0c131171258ec34610a73aa32b74a48cf4eb222bc313be1279186d3433dd1e50",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/12.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "12.png"
+      }
+    },
+    {
+      "name": "#13",
+      "description": "The Sapiens Club",
+      "edition": 13,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "neon"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/13.png",
+        "hash": "9c4c72c37b205ce5e41dece95dcf177555d485d031b881b8f7edb80a6a71bdba",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/13.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "13.png"
+      }
+    },
+    {
+      "name": "#14",
+      "description": "The Sapiens Club",
+      "edition": 14,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "blue"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/14.png",
+        "hash": "09a2acae7b8079549934e5be4547a99221a68a6f8ea33d87e856b2a0eeab157b",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/14.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "14.png"
+      }
+    },
+    {
+      "name": "#15",
+      "description": "The Sapiens Club",
+      "edition": 15,
+      "attributes": [
+        {
+          "trait_type": "ground",
+          "value": "violet"
+        },
+        {
+          "trait_type": "head",
+          "value": "standard"
+        },
+        {
+          "trait_type": "eyes",
+          "value": "standard"
+        },
+        {
+          "trait_type": "body",
+          "value": "standard"
+        }
+      ],
+      "tags": "Sapiens,Romania,Elrond",
+      "image": {
+        "href": "https://ipfs.io/ipfs/bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/15.png",
+        "hash": "4de4427599a355a85ad4cb222bc4216726ac022e2b54dd9e94522122363c3c21",
+        "ipfsUri": "ipfs://bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu/15.png",
+        "ipfsCid": "bafybeialptdt5rhojbeuadp5wlofynmdwbekrk3vu5s6xd2pwupchb7gbu",
+        "fileName": "15.png"
+      }
+    }
+  ],
+  "provenanceHash": "1039e83e518aefb9ae2a3932a0cc24a90687bef6a0195ddd9f3a5b7e6aa7151f",
+  "metadataFilesIpfsBaseCid": "bafybeihocx2c7llprvyauw3jhgvaz63wkoebjjjsacrn2gpve3q32kqhem"
+}
