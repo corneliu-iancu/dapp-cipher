@@ -2,6 +2,7 @@ import { dAppName } from 'config';
 import Mint from 'pages/Mint';
 import withPageTitle from './components/PageTitle';
 import Dashboard from './pages/Dashboard';
+import Demo from './pages/Demo';
 import Home from './pages/Home';
 import Transaction from './pages/Transaction';
 
@@ -9,6 +10,7 @@ export const routeNames = {
   home: '/',
   dashboard: '/dashboard',
   mint: '/mint',
+  demo: '/demo',
   transaction: '/transaction',
   unlock: '/unlock',
   ledger: '/ledger',
@@ -31,6 +33,12 @@ const routes: Array<any> = [
     path: routeNames.mint,
     title: 'Mint NFTs',
     component: Mint,
+    authenticatedRoute: true
+  },
+  {
+    path: routeNames.demo,
+    title: 'Demo NFTs',
+    component: Demo,
     authenticatedRoute: true
   },
   {
